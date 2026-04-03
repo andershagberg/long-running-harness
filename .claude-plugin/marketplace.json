@@ -1,0 +1,17 @@
+{
+  "name": "long-running-harness",
+  "owner": {
+    "name": "Anders Hagberg"
+  },
+  "plugins": [
+    {
+      "name": "long-running-harness",
+      "source": ".",
+      "description": "Structured harness for long-running AI agent tasks with planning, generator-evaluator feedback loops, progress tracking, and session resumption.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Anders Hagberg"
+      }
+    }
+  ]
+}

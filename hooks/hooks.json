@@ -1,0 +1,62 @@
+{
+  "hooks": {
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ -f .harness/progress.json ]; then PROGRESS=$(cat .harness/progress.json | tr -d \"\\n\" | tr -d \"\\r\" | tr -d \"\\t\"); echo \"{\\\"systemMessage\\\": \\\"HARNESS STATE — Preserve across compaction: $PROGRESS\\\"}\"; fi'",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ -f .harness/progress.json ]; then STATUS=$(grep -o '\"status\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' .harness/progress.json | head -1 | grep -o '\"[^\"]*\"$' | tr -d '\"'); PATTERN=$(grep -o '\"pattern\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' .harness/progress.json | head -1 | grep -o '\"[^\"]*\"$' | tr -d '\"'); if [ \"$STATUS\" = \"in_progress\" ]; then echo \"RESUMABLE HARNESS SESSION DETECTED (pattern: $PATTERN). Use /long-running-harness:orchestrate, /long-running-harness:iterate, or /long-running-harness:sprint to resume.\"; fi; fi'",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "generator",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "The generator subagent is about to stop. Check if .harness/progress.json exists and was updated with results for the current task (look for a task entry with status 'completed' or files_modified). If progress was not updated, return BLOCK with reason 'Generator must update .harness/progress.json before stopping.' If progress was updated, return ALLOW.",
+            "timeout": 15000
+          }
+        ]
+      },
+      {
+        "matcher": "evaluator",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "The evaluator subagent is about to stop. Check the .harness/feedback/ directory for a feedback file for the current iteration. If no feedback file was written, return BLOCK with reason 'Evaluator must write feedback to .harness/feedback/ before stopping.' If a feedback file exists, return ALLOW.",
+            "timeout": 15000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ -f .harness/progress.json ]; then STATUS=$(grep -o '\"status\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' .harness/progress.json | head -1 | grep -o '\"[^\"]*\"$' | tr -d '\"'); if [ \"$STATUS\" = \"in_progress\" ]; then echo \"WARNING: Harness has in-progress tasks. Progress is saved in .harness/progress.json and can be resumed next session.\"; fi; fi'",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
+}

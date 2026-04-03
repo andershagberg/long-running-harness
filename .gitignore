@@ -1,0 +1,5 @@
+# Harness runtime state (created when the harness runs)
+.harness/
+
+# Claude Code local settings (user-specific, not distributed)
+.claude/settings.local.json

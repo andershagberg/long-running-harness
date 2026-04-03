@@ -1,0 +1,22 @@
+{
+  "name": "long-running-harness",
+  "version": "1.0.0",
+  "description": "Structured harness for long-running AI agent tasks with planning, generator-evaluator feedback loops, progress tracking, and session resumption. Based on Anthropic's effective harness patterns.",
+  "author": {
+    "name": "Anders Hagberg"
+  },
+  "repository": "https://github.com/andershagberg/long-running-harness",
+  "license": "MIT",
+  "keywords": [
+    "harness",
+    "long-running",
+    "agent",
+    "evaluation",
+    "feedback-loop",
+    "orchestration",
+    "progress-tracking"
+  ],
+  "agents": "./agents/",
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
+}
