@@ -10,10 +10,10 @@
       "source": {
         "source": "url",
         "url": "https://github.com/andershagberg/long-running-harness.git",
-        "sha": "5aa82736783f9c166a861e46cb5bbca4cdde3298"
+        "sha": "f4ea538faaafbdb84ebae1a9804ed7af97df8998"
       },
       "description": "Structured harness for long-running AI agent tasks with planning, generator-evaluator feedback loops, progress tracking, and session resumption.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Anders Hagberg"
       }
