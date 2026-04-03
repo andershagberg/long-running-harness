@@ -16,7 +16,7 @@
     "orchestration",
     "progress-tracking"
   ],
-  "agents": "./agents/",
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks.json"
+  "agents": "agents",
+  "skills": "skills",
+  "hooks": "hooks/hooks.json"
 }
