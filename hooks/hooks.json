@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'if [ -f .harness/progress.json ]; then PROGRESS=$(cat .harness/progress.json | tr -d \"\\n\" | tr -d \"\\r\" | tr -d \"\\t\"); echo \"{\\\"systemMessage\\\": \\\"HARNESS STATE — Preserve across compaction: $PROGRESS\\\"}\"; fi'",
+            "command": "bash scripts/check-precompact.sh",
             "timeout": 5000
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'if [ -f .harness/progress.json ]; then STATUS=$(grep -o '\"status\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' .harness/progress.json | head -1 | grep -o '\"[^\"]*\"$' | tr -d '\"'); PATTERN=$(grep -o '\"pattern\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' .harness/progress.json | head -1 | grep -o '\"[^\"]*\"$' | tr -d '\"'); if [ \"$STATUS\" = \"in_progress\" ]; then echo \"RESUMABLE HARNESS SESSION DETECTED (pattern: $PATTERN). Use /long-running-harness:orchestrate, /long-running-harness:iterate, or /long-running-harness:sprint to resume.\"; fi; fi'",
+            "command": "bash scripts/check-session.sh",
             "timeout": 5000
           }
         ]
@@ -52,7 +52,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'if [ -f .harness/progress.json ]; then STATUS=$(grep -o '\"status\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' .harness/progress.json | head -1 | grep -o '\"[^\"]*\"$' | tr -d '\"'); if [ \"$STATUS\" = \"in_progress\" ]; then echo \"WARNING: Harness has in-progress tasks. Progress is saved in .harness/progress.json and can be resumed next session.\"; fi; fi'",
+            "command": "bash scripts/check-stop.sh",
             "timeout": 5000
           }
         ]
