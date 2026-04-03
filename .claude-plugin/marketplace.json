@@ -1,4 +1,5 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "long-running-harness",
   "owner": {
     "name": "Anders Hagberg"
@@ -6,7 +7,11 @@
   "plugins": [
     {
       "name": "long-running-harness",
-      "source": ".",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/andershagberg/long-running-harness.git",
+        "sha": "5aa82736783f9c166a861e46cb5bbca4cdde3298"
+      },
       "description": "Structured harness for long-running AI agent tasks with planning, generator-evaluator feedback loops, progress tracking, and session resumption.",
       "version": "1.0.0",
       "author": {
