@@ -1,6 +1,6 @@
 {
   "name": "long-running-harness",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Structured harness for long-running AI agent tasks with planning, generator-evaluator feedback loops, progress tracking, and session resumption.",
   "author": {
     "name": "Anders Hagberg"
