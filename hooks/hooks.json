@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/check-precompact.sh",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/check-precompact.sh\"",
             "timeout": 5000
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/check-session.sh",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/check-session.sh\"",
             "timeout": 5000
           }
         ]
@@ -52,7 +52,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/check-stop.sh",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/check-stop.sh\"",
             "timeout": 5000
           }
         ]
