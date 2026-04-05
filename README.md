@@ -26,10 +26,11 @@ After installing, skills are available as `/long-running-harness:sprint`, `/long
 
 ### Direct Project Use
 
-Copy the `.claude/` directory into your project root:
+Copy the plugin files into your project:
 
 ```bash
-cp -r .claude/ /path/to/your-project/.claude/
+# Copy agents, skills, hooks, scripts, and CLAUDE.md into your project
+cp -r agents/ skills/ hooks/ scripts/ CLAUDE.md /path/to/your-project/
 ```
 
 Skills are then available as `/sprint`, `/iterate`, `/orchestrate`.
